@@ -4,8 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#08121d" />
-  <meta name="description" content="COORDINATE — a simulation-first decision support research prototype for dynamic multi-agent rendezvous under uncertainty." />
-  <title>COORDINATE — Multi-Agent Mission Lab</title>
+  <meta name="description" content="COORDINATE — a simulation-based decision support prototype for stationary UAV–UGV battery-swap rendezvous in precision agriculture." />
+  <title>COORDINATE — UAV–UGV Mission Lab</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -16,83 +16,89 @@
     <a class="brand" href="#top" aria-label="COORDINATE home">
       <span class="brand-mark"><span></span><span></span><span></span></span>
       <span class="brand-name">COORDINATE<span class="brand-dot">.</span></span>
-      <span class="brand-divider"></span>
-      <span class="brand-sub">MISSION LAB</span>
+      <span class="brand-divider"></span><span class="brand-sub">UAV–UGV MISSION LAB</span>
     </a>
-    <button class="mobile-menu" id="mobileMenu" aria-label="Open navigation" aria-expanded="false">
-      <span></span><span></span>
-    </button>
+    <button class="mobile-menu" id="mobileMenu" aria-label="Open navigation" aria-expanded="false"><span></span><span></span></button>
     <nav class="main-nav" id="mainNav">
       <a class="nav-link active" href="#overview">Overview</a>
       <a class="nav-link" href="#mission-lab">Mission lab</a>
-      <a class="nav-link" href="#methods">Methods</a>
+      <a class="nav-link" href="#decision">Decision logic</a>
       <a class="nav-link" href="#architecture">Architecture</a>
-      <a class="nav-link" href="#project">Project</a>
+      <a class="nav-link" href="#scope">Scope</a>
     </nav>
-    <a class="header-cta" href="#mission-lab">Explore prototype <span>↗</span></a>
+    <a class="header-cta" href="#mission-lab">Open mission lab <span>↗</span></a>
   </header>
 
   <main>
     <section class="hero section-shell" id="overview">
       <div class="hero-copy reveal">
-        <div class="eyebrow"><span class="pulse-dot"></span> RESEARCH PROTOTYPE <span class="eyebrow-line"></span> MIS GRADUATION PROJECT</div>
-        <h1>Every move has a<br><span class="gradient-text">meeting point.</span></h1>
-        <p class="hero-lead">A simulation-first decision support concept for coordinating autonomous agents across changing positions, altitudes and operating conditions.</p>
+        <div class="eyebrow"><span class="pulse-dot"></span> RESEARCH PROTOTYPE <span class="eyebrow-line"></span> MIS411</div>
+        <h1>Meet at the<br><span class="gradient-text">right service bay.</span></h1>
+        <p class="hero-lead">A simulation-based decision support system for coordinating one agricultural ground vehicle and one UAV during a stationary battery-swap rendezvous.</p>
         <div class="hero-actions">
           <a class="button button-primary" href="#mission-lab">Explore mission lab <span>↘</span></a>
-          <a class="button button-quiet" href="#methods"><span class="play-icon">▷</span> Understand the system</a>
+          <a class="button button-quiet" href="#decision"><span class="play-icon">▷</span> How decisions are made</a>
         </div>
-        <div class="hero-footnote"><span class="mini-orbit">✳</span> Designed for explainable decisions — not black-box control.</div>
+        <div class="hero-footnote"><span class="mini-orbit">✳</span> Human-in-the-loop planning. No autonomous vehicle control.</div>
       </div>
       <div class="hero-visual reveal delay-one">
         <div class="visual-glow"></div>
-        <div class="visual-topline"><span>COORDINATION SPACE / 3D VIEW</span><span class="live-label"><i></i> SIMULATED</span></div>
+        <div class="visual-topline"><span>2.5D FIELD / BATTERY-SWAP SCENARIO</span><span class="live-label"><i></i> SIMULATED</span></div>
         <div class="hero-scene-wrap">
-          <canvas id="heroScene" class="hero-scene" aria-label="Decorative 3D-style visualization of two UAVs converging toward a shared point"></canvas>
-          <div class="scene-coord coord-a">AGENT / 01 <b>ALT 120 m</b></div>
-          <div class="scene-coord coord-b">AGENT / 02 <b>ALT 085 m</b></div>
-          <div class="scene-center"><span></span> RENDEZVOUS ZONE</div>
+          <canvas id="heroScene" class="hero-scene" aria-label="Decorative 2.5D field illustration with one ground vehicle, one UAV and a service bay"></canvas>
+          <div class="scene-coord coord-a">UGV / 01 <b>GROUND · Z 0</b></div>
+          <div class="scene-coord coord-b">UAV / 01 <b>CRUISE · Z 30 M</b></div>
+          <div class="scene-center"><span></span> APPROVED SERVICE BAY</div>
         </div>
-        <div class="visual-bottom"><div><span class="legend-dot dot-cyan"></span> UAV / ALPHA</div><div><span class="legend-dot dot-violet"></span> UAV / BETA</div><div><span class="legend-dash"></span> PLANNED PATH</div></div>
+        <div class="visual-bottom"><div><span class="legend-dot dot-green"></span> UGV / GROUND</div><div><span class="legend-dot dot-cyan"></span> UAV / 30 M</div><div><span class="legend-dash"></span> ROUTE PREVIEW</div></div>
         <div class="visual-corner corner-tl"></div><div class="visual-corner corner-br"></div>
       </div>
       <div class="hero-metrics reveal delay-two">
-        <div class="metric-item"><span class="metric-number">02</span><span class="metric-label">coordinated agents</span></div>
-        <div class="metric-item"><span class="metric-number">03</span><span class="metric-label">decision approaches</span></div>
-        <div class="metric-item"><span class="metric-number">3D</span><span class="metric-label">target environment</span></div>
-        <div class="metric-item metric-status"><span class="status-ring"></span><span><b>Simulation-first</b><small>Research prototype</small></span></div>
+        <div class="metric-item"><span class="metric-number">01 + 01</span><span class="metric-label">UGV and UAV</span></div>
+        <div class="metric-item"><span class="metric-number">2.5D</span><span class="metric-label">ground + fixed aerial layer</span></div>
+        <div class="metric-item"><span class="metric-number">30<span class="unit-small">m</span></span><span class="metric-label">UAV cruise altitude</span></div>
+        <div class="metric-item metric-status"><span class="status-ring"></span><span><b>Battery-swap mission</b><small>Stationary service event</small></span></div>
       </div>
     </section>
 
     <section class="intro-strip section-shell reveal">
-      <div class="strip-kicker">THE CHALLENGE</div>
-      <p>When agents move at different speeds, altitudes and mission loads, a fixed rendezvous plan can quickly become outdated. <strong>COORDINATE explores how a decision support system can compare alternatives and make coordination trade-offs visible.</strong></p>
-      <div class="strip-index">01 / 05</div>
+      <div class="strip-kicker">THE OPERATION</div>
+      <p>The UAV performs an agricultural spraying mission. When its battery becomes low, it requests a rendezvous with a mobile UGV carrying one compatible, fully charged spare battery. <strong>COORDINATE compares approved service bays and explains the operational trade-offs to the farm manager.</strong></p>
+      <div class="strip-index">01 / 04</div>
     </section>
 
     <section class="mission-section section-shell" id="mission-lab">
       <div class="section-heading reveal">
-        <div><div class="eyebrow"><span class="eyebrow-number">01</span> INTERACTIVE ENVIRONMENT</div><h2>Mission <span class="gradient-text">lab.</span></h2></div>
-        <div class="section-heading-note">Explore a conceptual 3D operating space. Adjust scenario inputs and preview agent movement.</div>
+        <div><div class="eyebrow"><span class="eyebrow-number">01</span> INTERACTIVE ENVIRONMENT</div><h2>Battery-swap <span class="gradient-text">mission lab.</span></h2></div>
+        <div class="section-heading-note">Explore the revised 2.5D scope: one ground vehicle on z = 0 and one UAV at a fixed 30 m cruise layer. Select an approved service bay and preview the stationary handover.</div>
+      </div>
+
+      <div class="lab-status-row reveal">
+        <div class="lab-status"><i></i><span>REFERENCE SCENARIO LOADED</span></div>
+        <div class="lab-meta"><span>FIELD <b>2.0 × 2.0 KM</b></span><span>GRID <b>100 × 100</b></span><span>SERVICE <b>10 MIN</b></span></div>
       </div>
 
       <div class="lab-layout">
         <div class="scene-panel panel reveal">
           <div class="panel-head">
-            <div><div class="panel-eyebrow">FIELD SIMULATION <span class="tiny-separator">/</span> COORDINATE SYSTEM</div><h3>Airspace overview</h3></div>
-            <div class="scene-head-tags"><span class="tag tag-green"><i></i> Scenario ready</span><span class="tag">3D CONCEPT</span></div>
+            <div><div class="panel-eyebrow">FIELD SIMULATION <span class="tiny-separator">/</span> 2.5D COORDINATE VIEW</div><h3>Ground and aerial operating layers</h3></div>
+            <div class="scene-head-tags"><span class="tag tag-green"><i></i> 2.5D MODEL</span><span class="tag">FIXED Z = 30 M</span></div>
           </div>
           <div class="lab-canvas-wrap">
-            <canvas id="missionScene" class="mission-scene" aria-label="Interactive conceptual 3D airspace with two UAV agents, altitude paths and restricted zone"></canvas>
-            <div class="canvas-axis axis-x">X / FIELD DISTANCE</div><div class="canvas-axis axis-y">Y / FIELD DEPTH</div><div class="canvas-axis axis-z">Z / ALTITUDE</div>
-            <div class="canvas-hud hud-top-left"><span>SCENE 001</span><b>LOCAL COORDINATES</b></div>
+            <canvas id="missionScene" class="mission-scene" aria-label="2.5D field map with UGV route, UAV route, service bays and vehicle-specific restricted areas"></canvas>
+            <div class="canvas-hud hud-top-left"><span>SCENE 001</span><b>2.00 × 2.00 KM</b></div>
             <div class="canvas-hud hud-top-right"><span class="hud-dot"></span><span id="sceneState">READY FOR PREVIEW</span></div>
-            <div class="canvas-hud hud-bottom-left"><span class="legend-dot dot-cyan"></span> UAV ALPHA <span class="legend-dot dot-violet"></span> UAV BETA <span class="legend-dot dot-red"></span> RESTRICTED ZONE</div>
-            <div class="canvas-crosshair">+</div>
+            <div class="canvas-hud hud-bottom-left"><span class="legend-dot dot-green"></span> UGV / Z0 <span class="legend-dot dot-cyan"></span> UAV / Z30 <span class="legend-dot dot-red"></span> RESTRICTED ZONE</div>
+            <div class="map-scale">N ↑ <span>GRID CELL 20 M</span></div>
           </div>
           <div class="scene-footer">
-            <div class="scene-footer-note"><span class="info-icon">i</span><span>This is a visual scenario preview. It does not calculate or certify an optimal rendezvous.</span></div>
-            <div class="scene-footer-actions"><button class="text-button" id="resetScene">↺ Reset scene</button><button class="button button-primary button-small" id="runPreview">Run visual preview <span>▷</span></button></div>
+            <div class="scene-footer-note"><span class="info-icon">i</span><span>Visual preview only. The Python route and optimization engine is not connected in this build.</span></div>
+            <div class="scene-footer-actions"><button class="text-button" id="resetScene">↺ Reset view</button><button class="button button-primary button-small" id="runPreview">Preview battery swap <span>▷</span></button></div>
+          </div>
+          <div class="mission-timeline" aria-live="polite">
+            <div class="timeline-head"><span>MISSION SEQUENCE</span><b id="missionStage">Awaiting preview</b></div>
+            <div class="timeline-track"><span id="timelineFill"></span></div>
+            <div class="timeline-steps"><span data-step="0" class="current">Approach</span><span data-step="1">Rendezvous</span><span data-step="2">Land</span><span data-step="3">Battery swap</span><span data-step="4">Complete</span></div>
           </div>
         </div>
 
@@ -100,82 +106,144 @@
           <div class="panel-head control-head"><div><div class="panel-eyebrow">SCENARIO INPUTS</div><h3>Mission parameters</h3></div><span class="control-icon">⌘</span></div>
           <div class="control-scroll">
             <div class="control-group">
-              <div class="group-title"><span class="agent-badge badge-cyan">A</span><div><b>UAV Alpha</b><small>Primary agent</small></div><span class="group-state">AGENT 01</span></div>
-              <div class="range-control"><div class="range-label"><label for="altA">Starting altitude</label><output id="altAValue">120 m</output></div><input id="altA" type="range" min="40" max="200" value="120" step="5" /></div>
-              <div class="range-control"><div class="range-label"><label for="speedA">Cruise speed</label><output id="speedAValue">12 m/s</output></div><input id="speedA" type="range" min="5" max="25" value="12" step="1" /></div>
-              <div class="range-control"><div class="range-label"><label for="loadA">Mission payload</label><output id="loadAValue">2.0 kg</output></div><input id="loadA" type="range" min="0" max="8" value="2" step="0.5" /></div>
+              <div class="group-title"><span class="agent-badge badge-green">G</span><div><b>Ground vehicle / UGV</b><small>Mobile battery carrier · z = 0</small></div><span class="group-state">01 / GROUND</span></div>
+              <div class="two-inputs">
+                <div class="number-control"><label for="ugvX">Start X <small>km</small></label><input id="ugvX" type="number" min="0" max="2" step="0.02" value="0.20"></div>
+                <div class="number-control"><label for="ugvY">Start Y <small>km</small></label><input id="ugvY" type="number" min="0" max="2" step="0.02" value="1.60"></div>
+              </div>
+              <div class="range-control"><div class="range-label"><label for="ugvSpeed">Ground speed</label><output id="ugvSpeedValue">4.0 km/h</output></div><input id="ugvSpeed" type="range" min="3" max="5" value="4" step="0.1"></div>
+              <div class="micro-note">Planned line endpoint: <b>(1.80, 1.60) km</b> · orthogonal movement</div>
+              <label class="toggle-row"><span><b>Compatible spare battery</b><small>One fully charged battery carried by UGV</small></span><input id="spareBattery" type="checkbox" checked><i></i></label>
             </div>
             <div class="control-divider"></div>
             <div class="control-group">
-              <div class="group-title"><span class="agent-badge badge-violet">B</span><div><b>UAV Beta</b><small>Coordinating agent</small></div><span class="group-state">AGENT 02</span></div>
-              <div class="range-control"><div class="range-label"><label for="altB">Starting altitude</label><output id="altBValue">85 m</output></div><input id="altB" type="range" min="40" max="200" value="85" step="5" /></div>
-              <div class="range-control"><div class="range-label"><label for="speedB">Cruise speed</label><output id="speedBValue">10 m/s</output></div><input id="speedB" type="range" min="5" max="25" value="10" step="1" /></div>
-              <div class="range-control"><div class="range-label"><label for="loadB">Mission payload</label><output id="loadBValue">1.0 kg</output></div><input id="loadB" type="range" min="0" max="8" value="1" step="0.5" /></div>
+              <div class="group-title"><span class="agent-badge badge-cyan">A</span><div><b>Aerial vehicle / UAV</b><small>Spraying drone · fixed cruise layer</small></div><span class="group-state">01 / AIR</span></div>
+              <div class="two-inputs">
+                <div class="number-control"><label for="uavX">Start X <small>km</small></label><input id="uavX" type="number" min="0" max="2" step="0.02" value="1.60"></div>
+                <div class="number-control"><label for="uavY">Start Y <small>km</small></label><input id="uavY" type="number" min="0" max="2" step="0.02" value="0.20"></div>
+              </div>
+              <div class="fixed-altitude"><span>CRUISE ALTITUDE</span><b>30 m</b><small>Fixed in the 2.5D model</small></div>
+              <div class="range-control"><div class="range-label"><label for="uavNominal">Nominal airspeed</label><output id="uavNominalValue">15.0 km/h</output></div><input id="uavNominal" type="range" min="8" max="20" value="15" step="0.1"></div>
+              <div class="speed-bounds"><span>Optimization bounds</span><b>8.0 – 20.0 km/h</b></div>
+              <div class="range-control"><div class="range-label"><label for="batteryInit">Initial battery</label><output id="batteryInitValue">70%</output></div><input id="batteryInit" type="range" min="45" max="100" value="70" step="1"></div>
+              <div class="range-control"><div class="range-label"><label for="batteryReserve">Minimum landing reserve</label><output id="batteryReserveValue">20%</output></div><input id="batteryReserve" type="range" min="10" max="40" value="20" step="1"></div>
             </div>
             <div class="control-divider"></div>
-            <div class="control-group environment-group">
-              <div class="group-title"><span class="agent-badge badge-amber">↗</span><div><b>Environment</b><small>Illustrative conditions</small></div></div>
-              <div class="range-control"><div class="range-label"><label for="wind">Wind intensity</label><output id="windValue">4 m/s</output></div><input id="wind" type="range" min="0" max="15" value="4" step="1" /></div>
-              <div class="range-control"><div class="range-label"><label for="windDir">Wind direction</label><output id="windDirValue">045°</output></div><input id="windDir" type="range" min="0" max="359" value="45" step="1" /></div>
-              <div class="select-control"><label for="environment">Scenario profile</label><select id="environment"><option value="nominal">Nominal conditions</option><option value="crosswind">Crosswind illustration</option><option value="variable">Variable conditions</option></select></div>
+            <div class="control-group">
+              <div class="group-title"><span class="agent-badge badge-amber">↗</span><div><b>Field & environment</b><small>Controlled scenario assumptions</small></div></div>
+              <div class="range-control"><div class="range-label"><label for="windSpeed">Constant wind speed</label><output id="windSpeedValue">4.0 km/h</output></div><input id="windSpeed" type="range" min="0" max="9" value="4" step="0.1"></div>
+              <div class="range-control"><div class="range-label"><label for="windAngle">Wind direction</label><output id="windAngleValue">000° · East</output></div><input id="windAngle" type="range" min="0" max="359" value="0" step="1"></div>
+              <div class="range-control"><div class="range-label"><label for="clearance">Safety clearance</label><output id="clearanceValue">40 m</output></div><input id="clearance" type="range" min="20" max="80" value="40" step="5"></div>
+              <div class="two-inputs">
+                <div class="number-control"><label for="timeWindow">Time window <small>min</small></label><input id="timeWindow" type="number" min="15" max="60" step="1" value="30"></div>
+                <div class="number-control"><label for="serviceDuration">Swap duration <small>min</small></label><input id="serviceDuration" type="number" min="5" max="30" step="1" value="10"></div>
+              </div>
             </div>
           </div>
-          <div class="control-foot"><span class="input-note"><i></i> INPUTS ONLY · NO LIVE TELEMETRY</span><button class="button button-outline button-small" id="restoreInputs">Restore defaults</button></div>
+          <div class="control-foot"><span class="input-note"><i></i> USER INPUTS · NO LIVE SENSORS</span><button class="button button-outline button-small" id="restoreInputs">Load report defaults</button></div>
         </aside>
       </div>
 
-      <div class="telemetry-grid reveal">
-        <div class="telemetry-card panel"><div class="telemetry-top"><span>AGENT COUNT</span><span class="telemetry-icon cyan-icon">⌁</span></div><div class="telemetry-value">02 <small>agents</small></div><div class="telemetry-caption">Two independent UAV profiles</div><div class="telemetry-bars bars-agents"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
-        <div class="telemetry-card panel"><div class="telemetry-top"><span>ALTITUDE LAYERS</span><span class="telemetry-icon violet-icon">↟</span></div><div class="telemetry-value">3D <small>space</small></div><div class="telemetry-caption">X · Y · Z coordinate concept</div><div class="altitude-bars"><span style="--bar:38%"></span><span style="--bar:65%"></span><span style="--bar:47%"></span><span style="--bar:82%"></span><span style="--bar:58%"></span><span style="--bar:92%"></span><span style="--bar:72%"></span><span style="--bar:100%"></span><span style="--bar:64%"></span><span style="--bar:83%"></span><span style="--bar:51%"></span><span style="--bar:74%"></span></div></div>
-        <div class="telemetry-card panel"><div class="telemetry-top"><span>WIND INPUT</span><span class="telemetry-icon amber-icon">≋</span></div><div class="telemetry-value" id="windTelemetry">4 <small>m/s</small></div><div class="telemetry-caption">User-defined environmental input</div><div class="wind-meter"><div class="wind-meter-fill" id="windMeterFill"></div></div><div class="meter-labels"><span>CALM</span><span>15 M/S</span></div></div>
-        <div class="telemetry-card telemetry-engine panel"><div class="telemetry-top"><span>DECISION ENGINE</span><span class="engine-pulse"></span></div><div class="engine-state">Integration pending<span class="engine-state-dot"></span></div><div class="telemetry-caption">Mathematical model is maintained separately by the research team.</div><div class="engine-progress"><span></span></div><div class="engine-foot"><span>UI LAYER</span><span>READY FOR API</span></div></div>
+      <div class="lab-lower-grid reveal">
+        <section class="panel candidate-panel">
+          <div class="panel-head"><div><div class="panel-eyebrow">APPROVED SERVICE LOCATIONS</div><h3>Candidate meeting bays</h3></div><span class="tag">3 REPORT EXAMPLE NODES</span></div>
+          <div class="candidate-list" id="candidateList">
+            <button class="candidate-card selected" data-candidate="M1"><span class="candidate-rank">01</span><span class="candidate-main"><b>M1 <small>(0.40, 1.60)</small></b><em>Recommended in worked example</em></span><span class="candidate-status status-recommended">RANK 1</span></button>
+            <button class="candidate-card" data-candidate="M2"><span class="candidate-rank">02</span><span class="candidate-main"><b>M2 <small>(0.80, 1.60)</small></b><em>Feasible alternative in worked example</em></span><span class="candidate-status status-feasible">RANK 2</span></button>
+            <button class="candidate-card" data-candidate="M3"><span class="candidate-rank">03</span><span class="candidate-main"><b>M3 <small>(1.60, 1.60)</small></b><em>Fails the reference time window</em></span><span class="candidate-status status-blocked">INFEASIBLE</span></button>
+          </div>
+          <div class="reference-note"><span class="info-icon">i</span><span>These candidate statuses and numerical values are transcribed from the report’s worked example (§3.7). They are reference results, not recalculated when the inputs above change.</span></div>
+        </section>
+
+        <section class="panel selected-panel">
+          <div class="panel-head"><div><div class="panel-eyebrow">WORKED EXAMPLE / SECTION 3.7</div><h3 id="selectedTitle">M1 · Recommended option</h3></div><span class="tag tag-green" id="selectedStatus">FEASIBLE</span></div>
+          <div class="selected-metrics" id="selectedMetrics">
+            <div><span>OPTIMAL UAV SPEED</span><b>20.00 <small>km/h</small></b></div>
+            <div><span>TOTAL MISSION TIME</span><b>0.276 <small>h</small></b></div>
+            <div><span>UGV WAIT</span><b>3.5 <small>min</small></b></div>
+            <div><span>FUEL PROXY</span><b>0.117 <small>L*</small></b></div>
+            <div><span>UAV BATTERY USED</span><b>42.23 <small>%</small></b></div>
+            <div><span>OBJECTIVE SCORE J</span><b>0.399</b></div>
+          </div>
+          <div class="selected-explanation" id="selectedExplanation">The proposed method increases UAV speed against the headwind to reach M1 sooner, while keeping battery use within the available 50% budget.</div>
+          <div class="reference-warning">REPORT REFERENCE · NOT A LIVE OPTIMIZER RESPONSE</div>
+        </section>
       </div>
+
+      <div class="comparison-panel panel reveal">
+        <div class="panel-head"><div><div class="panel-eyebrow">THREE-STRATEGY REFERENCE</div><h3>How the methods differ in the worked example</h3></div><span class="tag">SAME SCENARIO INPUTS</span></div>
+        <div class="strategy-table-wrap">
+          <table class="strategy-table">
+            <thead><tr><th>Strategy</th><th>Selection rule</th><th>Worked-example outcome</th></tr></thead>
+            <tbody>
+              <tr><td><b>Static baseline</b><small>Strategy A</small></td><td>Central service bay M2 at nominal UAV speed (15 km/h).</td><td><span class="table-badge badge-fail">Infeasible</span><small>Battery use 51.30% exceeds the 50% available budget.</small></td></tr>
+              <tr><td><b>Dynamic heuristic</b><small>Strategy B</small></td><td>Shortest total geometric distance at nominal UAV speed (15 km/h).</td><td><span class="table-badge badge-fail">M1 infeasible</span><small>Battery use 50.72% exceeds the 50% available budget.</small></td></tr>
+              <tr class="proposed-row"><td><b>Proposed DSS</b><small>Strategy C</small></td><td>Searches UAV speed within bounds for each candidate, then ranks feasible options by normalized quadratic score J.</td><td><span class="table-badge badge-win">M1 · Rank 1</span><small>20.00 km/h; 42.23% battery use; J = 0.399.</small></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <section class="decision-panel panel reveal" id="decision-review">
+        <div class="panel-head"><div><div class="panel-eyebrow">HUMAN-IN-THE-LOOP CONTROL</div><h3>Manager decision & run record</h3></div><span class="tag">SESSION LOG</span></div>
+        <div class="decision-body">
+          <div class="decision-context"><span class="decision-context-icon">◎</span><div><b id="decisionContextTitle">Recommendation ready for review · M1</b><small id="decisionContextText">The farm operations manager retains final authority. Review the reference option, select an alternative to override, or reject the recommendation.</small></div></div>
+          <label class="rationale-label" for="decisionRationale">Decision rationale <span>OPTIONAL</span></label>
+          <textarea id="decisionRationale" rows="2" placeholder="e.g. Approve because the UAV remains above its minimum battery reserve."></textarea>
+          <div class="decision-actions">
+            <button class="button button-primary button-small" id="approveDecision">Approve recommendation</button>
+            <button class="button button-outline button-small" id="overrideDecision">Override with selected bay</button>
+            <button class="button button-danger button-small" id="rejectDecision">Reject recommendation</button>
+          </div>
+          <div class="decision-log-head"><b>Recent decision records</b><span>IN-MEMORY · CURRENT BROWSER SESSION</span></div>
+          <div class="decision-log" id="decisionLog"><div class="empty-log">No manager decision recorded in this session yet.</div></div>
+        </div>
+        <div class="reference-note decision-note"><span class="info-icon">i</span><span>Actions demonstrate the interface workflow only. Records are held in this browser session; persistent audit storage will be provided by the backend integration.</span></div>
+      </section>
+
+      <div class="custom-state" id="customState" hidden><span class="info-icon">!</span><span><b>Custom visual inputs detected.</b> The worked-example results remain unchanged and must not be interpreted as results for your edited scenario. Re-load report defaults to restore the documented reference case.</span></div>
     </section>
 
-    <section class="methods-section section-shell" id="methods">
+    <section class="methods-section section-shell" id="decision">
       <div class="section-heading reveal">
         <div><div class="eyebrow"><span class="eyebrow-number">02</span> DECISION FRAMEWORK</div><h2>Three ways to<br><span class="gradient-text">coordinate.</span></h2></div>
-        <div class="section-heading-note">The platform is designed to compare a fixed baseline, a simple heuristic and the proposed dynamic method under shared scenario conditions.</div>
+        <div class="section-heading-note">The revised model compares the strategies using the same field, resources, constraints and scenario inputs.</div>
       </div>
       <div class="method-grid">
-        <article class="method-card panel reveal"><div class="method-number">01 <span>BASELINE</span></div><div class="method-symbol symbol-static"><span></span><span></span><span></span></div><h3>Static method</h3><p>A predefined meeting plan used as a reference point for evaluating more adaptive approaches.</p><div class="method-foot"><span class="method-pill">Fixed reference</span><span class="method-arrow">↗</span></div></article>
-        <article class="method-card panel reveal delay-one"><div class="method-number">02 <span>RULE-BASED</span></div><div class="method-symbol symbol-heuristic"><i></i><i></i><i></i><i></i></div><h3>Dynamic heuristic</h3><p>A lightweight rule-based approach that selects an option using a limited set of operational indicators.</p><div class="method-foot"><span class="method-pill">Fast comparison</span><span class="method-arrow">↗</span></div></article>
-        <article class="method-card method-featured panel reveal delay-two"><div class="featured-glow"></div><div class="method-number">03 <span>PROPOSED APPROACH</span></div><div class="method-symbol symbol-proposed"><span></span><span></span><span></span><b>✳</b></div><h3>Dynamic optimization</h3><p>The research approach aims to evaluate agent state, altitude, environmental inputs and mission constraints together.</p><div class="method-foot"><span class="method-pill featured-pill">In development</span><span class="method-arrow">↗</span></div></article>
+        <article class="method-card panel reveal"><div class="method-number">01 <span>BASELINE</span></div><div class="method-symbol symbol-static"><span></span><span></span><span></span></div><h3>Static method</h3><p>Uses the central approved service bay and nominal UAV speed. It does not adapt the meeting choice to wind, obstacle or resource conditions.</p><div class="method-foot"><span class="method-pill">Fixed reference</span><span class="method-arrow">↗</span></div></article>
+        <article class="method-card panel reveal delay-one"><div class="method-number">02 <span>GREEDY</span></div><div class="method-symbol symbol-heuristic"><i></i><i></i><i></i><i></i></div><h3>Dynamic heuristic</h3><p>At nominal speed, selects the feasible candidate with the shortest combined UGV and UAV geometric travel distance. It does not optimize waiting cost globally.</p><div class="method-foot"><span class="method-pill">Distance-first</span><span class="method-arrow">↗</span></div></article>
+        <article class="method-card method-featured panel reveal delay-two"><div class="featured-glow"></div><div class="method-number">03 <span>PROPOSED DSS</span></div><div class="method-symbol symbol-proposed"><span></span><span></span><span></span><b>✳</b></div><h3>Proposed optimization</h3><p>Plans vehicle-specific routes, searches a continuous UAV cruise speed for each candidate, removes infeasible options, and ranks the remaining alternatives by the normalized compromise score.</p><div class="method-foot"><span class="method-pill featured-pill">Model defined · API pending</span><span class="method-arrow">↗</span></div></article>
       </div>
-      <div class="method-note"><span class="info-icon">i</span><p><strong>Methodology note:</strong> Algorithm equations, objective weights and final selection logic are intentionally not implemented in this interface yet. This section describes the planned comparison structure only.</p></div>
+      <div class="method-note"><span class="info-icon">i</span><p><strong>Implementation boundary:</strong> This lab visualizes the report’s reference case and strategy definitions. It does not execute A*, bounded speed search or the Python objective function in the browser. Those calculations must come from the validated Python engine when the API is integrated.</p></div>
     </section>
 
     <section class="architecture-section section-shell" id="architecture">
       <div class="section-heading reveal">
-        <div><div class="eyebrow"><span class="eyebrow-number">03</span> SYSTEM DESIGN</div><h2>From inputs to<br><span class="gradient-text">informed decisions.</span></h2></div>
-        <div class="section-heading-note">A modular architecture keeps scenario data, simulation, decision logic and the operator interface separate.</div>
+        <div><div class="eyebrow"><span class="eyebrow-number">03</span> SYSTEM DESIGN</div><h2>From mission inputs<br><span class="gradient-text">to reviewed decisions.</span></h2></div>
+        <div class="section-heading-note">A three-layer design separates the web interface, request validation and Python simulation/decision engine.</div>
       </div>
-      <div class="architecture-flow panel reveal">
-        <div class="flow-line"><span></span></div>
-        <div class="flow-step"><div class="flow-icon flow-cyan">⌘</div><span class="flow-index">01 / INPUT</span><h3>Scenario data</h3><p>Agent state, mission profile, environment and constraints.</p></div>
-        <div class="flow-connector">→</div>
-        <div class="flow-step"><div class="flow-icon flow-blue">◌</div><span class="flow-index">02 / MODEL</span><h3>Simulation layer</h3><p>Movement, altitude and scenario changes in a controlled environment.</p></div>
-        <div class="flow-connector">→</div>
-        <div class="flow-step flow-pending"><div class="flow-icon flow-violet">✳</div><span class="flow-index">03 / DECISION</span><h3>Decision engine</h3><p>Algorithm module and feasibility checks, to be integrated.</p><span class="pending-label"><i></i> PENDING</span></div>
-        <div class="flow-connector">→</div>
-        <div class="flow-step"><div class="flow-icon flow-amber">▤</div><span class="flow-index">04 / OPERATOR</span><h3>Decision interface</h3><p>Compare alternatives, review trade-offs and inspect outputs.</p></div>
+      <div class="architecture-stack panel reveal">
+        <div class="stack-layer layer-ui"><div class="stack-head"><span>01</span><b>Web interface / Frontend</b><small>Scenario setup · 2.5D field · decision review</small></div><div class="stack-modules"><span>Scenario configuration</span><span>2.5D simulation view</span><span>Decision review & control</span></div></div>
+        <div class="stack-connector"><span>JSON scenario & decision request ↓</span></div>
+        <div class="stack-layer layer-api"><div class="stack-head"><span>02</span><b>API & input validation / FastAPI</b><small>Request routing · data types · units · constraints</small></div><div class="stack-modules"><span>Request router</span><span>Input validator</span></div></div>
+        <div class="stack-connector"><span>Validated parameters ↓ · JSON recommendations & run record ↑</span></div>
+        <div class="stack-layer layer-engine"><div class="stack-head"><span>03</span><b>Simulation & decision engine / Python</b><small>Deterministic, reproducible scenario evaluation</small></div><div class="stack-modules"><span>Field & feasibility evaluator</span><span>Candidate route & ETA calculator</span><span>Multi-method comparison & ranking</span><span>Decision & run recorder</span></div></div>
+        <div class="engine-pending"><i></i> BACKEND CONNECTION / PENDING IN THIS FRONTEND BUILD</div>
       </div>
-      <div class="architecture-caption"><span>MODULAR BY DESIGN</span><span>SIMULATION-FIRST</span><span>HUMAN-REVIEWABLE</span><span>REPRODUCIBLE EXPERIMENTS</span></div>
+      <div class="architecture-caption"><span>SHARED API DATA CONTRACT</span><span>UNIT-AWARE INPUT VALIDATION</span><span>HUMAN AUTHORIZATION</span><span>AUDITABLE RUN HISTORY</span></div>
     </section>
 
-    <section class="scope-section section-shell" id="project">
+    <section class="scope-section section-shell" id="scope">
       <div class="scope-card panel reveal">
-        <div class="scope-copy"><div class="eyebrow"><span class="eyebrow-number">04</span> PROJECT BOUNDARIES</div><h2>Built to explore.<br><span class="gradient-text">Not to take control.</span></h2><p>COORDINATE is an academic simulation and decision support prototype. It is designed to make coordination alternatives easier to inspect — while keeping operational authority with the human operator.</p><div class="scope-tags"><span>Research prototype</span><span>Synthetic scenarios</span><span>Human-in-the-loop</span></div></div>
+        <div class="scope-copy"><div class="eyebrow"><span class="eyebrow-number">04</span> PROJECT BOUNDARIES</div><h2>Built to recommend.<br><span class="gradient-text">Not to take control.</span></h2><p>COORDINATE is a simulation-based decision support prototype. It recommends and explains a feasible stationary battery-swap rendezvous; the farm operations manager retains final decision authority.</p><div class="scope-tags"><span>1 UGV + 1 UAV</span><span>2.5D field</span><span>Fixed 30 m cruise</span><span>Human-in-the-loop</span></div></div>
         <div class="scope-list">
-          <div class="scope-row"><span class="scope-check">✓</span><div><b>Included in the research direction</b><small>3D rendezvous concept, restricted zones, scenario inputs and multi-method comparison.</small></div></div>
-          <div class="scope-row"><span class="scope-check">✓</span><div><b>Simulation-based evaluation</b><small>Controlled scenarios and measurable performance indicators.</small></div></div>
-          <div class="scope-row scope-excluded"><span class="scope-cross">—</span><div><b>Not part of this prototype</b><small>Live GPS tracking, physical UAV control, hardware integration or real-world flight validation.</small></div></div>
+          <div class="scope-row"><span class="scope-check">✓</span><div><b>Included in the revised scope</b><small>One UGV, one UAV, one compatible spare battery, approved service bays, candidate evaluation and three-method comparison.</small></div></div>
+          <div class="scope-row"><span class="scope-check">✓</span><div><b>Stationary battery-swap event</b><small>The UAV lands at z = 0. Battery replacement is represented as a fixed-duration service event; robotic battery handling is not simulated.</small></div></div>
+          <div class="scope-row scope-excluded"><span class="scope-cross">—</span><div><b>Outside the core scope</b><small>Multiple vehicles, full 3D flight dynamics, live GPS/sensors, real-vehicle control, autonomous battery handling and physical field trials.</small></div></div>
         </div>
       </div>
-      <div class="project-footer reveal"><div class="footer-brand"><span class="brand-mark"><span></span><span></span><span></span></span><b>COORDINATE<span class="brand-dot">.</span></b></div><p>Dynamic meeting optimization research prototype<br>Department of Management Information Systems · İzmir Bakırçay University</p><a href="#top" class="back-top">BACK TO TOP ↑</a></div>
+      <div class="project-footer reveal"><div class="footer-brand"><span class="brand-mark"><span></span><span></span><span></span></span><b>COORDINATE<span class="brand-dot">.</span></b></div><p>Simulation-based UAV–UGV rendezvous decision support<br>Department of Management Information Systems · İzmir Bakırçay University</p><a href="#top" class="back-top">BACK TO TOP ↑</a></div>
     </section>
   </main>
-
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <script src="app.js"></script>
 </body>
